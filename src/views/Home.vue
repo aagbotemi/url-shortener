@@ -21,7 +21,9 @@
     </v-container>
     <article class="statistics">
       <v-container>
-        <v-form @submit.prevent="getUrl" class="d-sm-flex align-self-center">
+        <v-form
+          ref="form" @submit.prevent="getUrl"
+          class="d-sm-flex align-sm-center">
           <v-text-field
             label="Shorten a link here..."
             outlined
@@ -41,7 +43,85 @@
           >Shorten it</v-btn
           >
         </v-form>
-        <div class="my-10">{{ shortenedUrl }}</div>
+        <div
+          v-if="shortenedUrl"
+          class="d-flex mb-10 mt-n9 mx-4 py-2 px-7 rounded"
+          style="background-color: white"
+        >
+          <!--          <span :key="index" v-for="(url, index) in urlArray">
+                      {{urlArray}}
+                      {{ url.urlText }}
+                    </span>-->
+          <v-spacer />
+          {{ shortenedUrl }}
+          <v-btn
+            v-clipboard:copy="shortenedUrl"
+            :disabled="loading"
+            small color="#2acfcf"
+            class="white--text text-capitalize ml-5"
+            @click="clickedUrl"
+          >{{ clicked ? 'Copied' : 'Copy'}}</v-btn>
+        </div>
+        <div class="advance-statistic text-center">
+          <h2>Advanced Statistics</h2>
+          <p>
+            Track how your links are performing across the web with our advanced
+            statistics dashboard.
+          </p>
+        </div>
+        <div class="statistics-card pt-10">
+          <div class="card-line"></div>
+          <div class="card-line-horizontal"></div>
+          <v-row class="mb-10">
+            <v-col cols="12" sm="6" md="4">
+              <v-card class="card mb-8 text-center text-sm-left">
+                <div class="card-img pa-2 text-center">
+                  <img
+                    class="pt-1"
+                    src="../assets/img/icon-brand-recognition.svg"
+                  />
+                </div>
+                <h4 class="pt-0 pb-2 ml-4">Brand Recognition</h4>
+                <v-card-text class="pt-0">
+                  Boost your brand recognition with each click. Generic links
+                  don't mean a thing. Branded links help instill confidence in
+                  your content.
+                </v-card-text>
+              </v-card>
+            </v-col>
+            <v-col cols="12" sm="6" md="4">
+              <v-card class="card mb-8 mt-md-6 text-center text-sm-left">
+                <div class="card-img pa-2 text-center">
+                  <img
+                    class="pt-1"
+                    src="../assets/img/icon-detailed-records.svg"
+                  />
+                </div>
+                <h4 class="pt-0 pb-2 ml-4">Detailed Records</h4>
+                <v-card-text class="pt-0">
+                  Gain insights into who is clicking your links. Knowing when
+                  and where people engage with your content helps inform better
+                  decisions.
+                </v-card-text>
+              </v-card>
+            </v-col>
+            <v-col cols="12" sm="6" md="4">
+              <v-card class="card mt-md-13 text-center text-sm-left">
+                <div class="card-img pa-2 text-center">
+                  <img
+                    class="pt-1"
+                    src="../assets/img/icon-fully-customizable.svg"
+                  />
+                </div>
+                <h4 class="pt-0 pb-2 ml-4">Fully Customizable</h4>
+                <v-card-text class="pt-0">
+                  Improve brand awareness and content discoverability through
+                  customizable links, supercharging audience engagement.
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </div>
       </v-container>
     </article>
   </section>
@@ -56,27 +136,32 @@ export default Vue.extend({
   name: 'Home',
   data: () => ({
     icons,
+    loading: false as boolean,
     url: '' as string,
-    valid: false as boolean,
+    shortenedUrl: '' as string,
+    clicked: true as boolean,
     urlRules: [
       (url: any) => !!url || 'Url is required',
       (url: any) => /^(ftp|http|https):\/\/[^ "]+$/.test(url) || 'Input the correct url'
-    ],
-    loading: false as boolean,
-    shortenedUrl: '' as string,
-    clicked: true as boolean
+    ]
   }),
   mounted () {
     this.getUrl()
   },
   methods: {
+    clickedUrl () {
+      setTimeout(() => {
+        this.clicked = false
+      }, 1000)
+
+      this.clicked = true
+    },
     async getUrl () {
       if (this.url) {
-        this.loading = true
+        this.loading = true as boolean
         await axios
           .get(`https://api.shrtco.de/v2/shorten?url=${this.url}`)
           .then((response: any) => {
-            console.log(response.data)
             const res = response.data
             this.shortenedUrl = res.result.short_link
             this.url = ''
@@ -85,7 +170,8 @@ export default Vue.extend({
             console.log(error.message)
           })
           .finally(() => {
-            this.loading = false
+            this.loading = false as boolean
+            this.$refs.form.reset()
           })
       }
     }
@@ -126,14 +212,87 @@ export default Vue.extend({
      // width: 100%;
     }
   }
-}
-@media only screen and (max-width: 575px) {
-  .statistics {
-    form {
-      button {
-        width: 100%;
+
+  .advance-statistic {
+    max-width: 30rem;
+    margin: 0 1rem;
+    h2 {
+      color: var(--clr-grayish-blue);
+      font-size: 33px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--clr-grayish-violet);
+    }
+  }
+  .statistics-card {
+    margin: 1.2rem 1rem;
+    position: relative;
+
+    .card {
+      .card-img {
+        transform: translateY(-25px);
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        background-color: hsl(257, 27%, 26%);
+        margin: 0 auto;
+
+        img {
+          width: 1.8rem;
+        }
       }
     }
+    .card-line-horizontal {
+      position: absolute;
+      left: 49.6%;
+      border-left: 5px solid var(--clr-cyan);
+      height: 70%;
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .jumbotron {
+    margin: 0 1rem;
+
+    .jumbotron-text {
+      h1 {
+        font-size: 45px;
+      }
+    }
+  }
+  .statistics {
+    form {
+      padding: 1.2rem 5rem !important;
+
+      button {
+        width: auto;
+      }
+    }
+
+    .advance-statistic {
+      margin: 0 auto;
+    }
+
+    .statistics-card {
+      .card {
+        .card-img {
+          margin-left: 16px;
+        }
+      }
+      .card-line-horizontal {
+        display: none;
+      }
+    }
+  }
+  .boost-link {
+    background-image: linear-gradient(
+        rgba(59, 48, 84, 0.95),
+        rgba(59, 48, 84, 0.85)
+    ),
+    url("../assets/img/bg-boost-desktop.svg");
   }
 }
 @media only screen and (min-width: 767.5px) {
@@ -147,9 +306,13 @@ export default Vue.extend({
   .statistics {
     form {
       padding: 1.2rem 1rem;
-      background: url("../assets/img/bg-shorten-desktop.svg"), var(--clr-dark-violet);
-      //background: var(--clr-dark-violet);
-
+    }
+  }
+  .statistics-card {
+    .card-line {
+      background-color: var(--clr-cyan);
+      height: 4px;
+      transform: translateY(8rem);
     }
   }
 }
