@@ -131,6 +131,98 @@
         class="mt-7 text-center text-capitalize white--text"
       >Get Started</v-btn>
     </article>
+    <footer>
+      <v-container>
+        <v-row class="mx-1">
+          <v-col class="text-center text-md-left" cols="12" md="3">
+            <img alt="shortly logo" class="logo" src="../assets/img/logo.svg" />
+          </v-col>
+          <v-col cols="12" md="9" class="text-center text-sm-left">
+            <v-row>
+              <v-col sm="6" md="3" cols="12">
+                <h4 class="mb-1">Features</h4>
+                <ul class="ml-n6">
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Link Shortening
+                    </router-link>
+                  </li>
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Branded Links
+                    </router-link>
+                  </li>
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Analytics
+                    </router-link>
+                  </li>
+                </ul>
+              </v-col>
+              <v-col sm="6" md="3" cols="12">
+                <h4 class="mb-1">Resources</h4>
+                <ul class="ml-n6">
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Blog
+                    </router-link>
+                  </li>
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Developers
+                    </router-link>
+                  </li>
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Support
+                    </router-link>
+                  </li>
+                </ul>
+              </v-col>
+              <v-col sm="6" md="2" cols="12">
+                <h4>Company</h4>
+                <ul class="ml-n6">
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      About
+                    </router-link>
+                  </li>
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Our Team
+                    </router-link>
+                  </li>
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Careers
+                    </router-link>
+                  </li>
+                  <li class="mb-1">
+                    <router-link class="text-decoration-none" to="/">
+                      Contact
+                    </router-link>
+                  </li>
+                </ul>
+              </v-col>
+              <v-col sm="6" md="4" cols="12">
+                <a class="mr-4" href="#"
+                ><v-icon medium>{{ icons.facebook }}</v-icon></a
+                >
+                <a class="mr-4" href="#"
+                ><v-icon medium>{{ icons.twitter }}</v-icon></a
+                >
+                <a class="mr-4" href="#"
+                ><v-icon medium>{{ icons.pinterest }}</v-icon></a
+                >
+                <a class="mr-4" href="#"
+                ><v-icon medium>{{ icons.instagram }}</v-icon></a
+                >
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-container>
+    </footer>
   </section>
 </template>
 
@@ -256,6 +348,37 @@ export default Vue.extend({
       left: 49.6%;
       border-left: 5px solid var(--clr-cyan);
       height: 70%;
+    }
+  }
+}
+
+footer {
+  background: var(--clr-very-dark-violet);
+  color: white !important;
+  padding: 40px 0px;
+
+  .logo {
+    filter: brightness(0.8) invert(0.8);
+  }
+
+  h4 {
+    color: var(--clr-gray);
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      font-size: 16px;
+
+      a {
+        color: var(--clr-grayish-violet);
+      }
+    }
+  }
+  a {
+    .v-icon {
+      color: #fff;
     }
   }
 }
