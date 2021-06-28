@@ -124,6 +124,13 @@
         </div>
       </v-container>
     </article>
+    <article class="boost-link pt-16 pb-10 text-center">
+      <h2 class="white--text">Boost your links today</h2>
+      <v-btn
+        color="#2acfcf"
+        class="mt-7 text-center text-capitalize white--text"
+      >Get Started</v-btn>
+    </article>
   </section>
 </template>
 
@@ -288,11 +295,7 @@ export default Vue.extend({
     }
   }
   .boost-link {
-    background-image: linear-gradient(
-        rgba(59, 48, 84, 0.95),
-        rgba(59, 48, 84, 0.85)
-    ),
-    url("../assets/img/bg-boost-desktop.svg");
+    background: url("../assets/img/bg-boost-desktop.svg"), var(--clr-dark-violet);
   }
 }
 @media only screen and (min-width: 767.5px) {
