@@ -48,10 +48,6 @@
           class="d-flex mb-10 mt-n9 mx-4 py-2 px-7 rounded"
           style="background-color: white"
         >
-          <!--          <span :key="index" v-for="(url, index) in urlArray">
-                      {{urlArray}}
-                      {{ url.urlText }}
-                    </span>-->
           <v-spacer />
           {{ shortenedUrl }}
           <v-btn
@@ -133,7 +129,7 @@
     </article>
     <footer>
       <v-container>
-        <v-row class="mx-1">
+        <v-row class="py-10 mx-1">
           <v-col class="text-center text-md-left" cols="12" md="3">
             <img alt="shortly logo" class="logo" src="../assets/img/logo.svg" />
           </v-col>
@@ -222,7 +218,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <div class="copyright text-center">
+      <div class="copyright text-center py-1">
         <v-container>
           {{ new Date().getFullYear() }} Copyright reserved
         </v-container>
@@ -307,14 +303,9 @@ export default Vue.extend({
   form {
     transform: translateY(-45px);
     background: url("../assets/img/bg-shorten-mobile.svg"), var(--clr-dark-violet);
-    //background: var(--clr-dark-violet);
     border-radius: 10px;
     padding: 1.2rem 1.2rem;
     margin: 0rem 1rem;
-
-    button {
-     // width: 100%;
-    }
   }
 
   .advance-statistic {
@@ -360,7 +351,7 @@ export default Vue.extend({
 footer {
   background: var(--clr-very-dark-violet);
   color: white !important;
-  padding: 40px 0px;
+  //padding: 40px 0px;
 
   .logo {
     filter: brightness(0.8) invert(0.8);
