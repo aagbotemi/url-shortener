@@ -222,6 +222,11 @@
           </v-col>
         </v-row>
       </v-container>
+      <div class="copyright text-center">
+        <v-container>
+          {{ new Date().getFullYear() }} Copyright reserved
+        </v-container>
+      </div>
     </footer>
   </section>
 </template>
@@ -380,6 +385,10 @@ footer {
     .v-icon {
       color: #fff;
     }
+  }
+  .copyright {
+    background-color: #41415A;
+    font-size: 15px;
   }
 }
 
