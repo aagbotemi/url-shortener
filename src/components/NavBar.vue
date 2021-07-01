@@ -1,12 +1,12 @@
 <template>
   <div class="nav">
     <div class="navigation-desktop d-flex align-center"  :class="[ showMobileNav ? 'full' : 'half']">
-      <div class="navigation-icon" @click="showMobileNav = !showMobileNav">
+      <div class="navigation-icon">
         <div v-if="showMobileNav" class="d-flex align-center">
           <img width="90rem" class="mt-1" src="../assets/img/logo.svg" />
         </div>
         <div v-if="!showMobileNav" class="d-flex align-center">
-          <v-icon>{{ icons.menu }}</v-icon>
+          <v-icon @click="showMobileNav = !showMobileNav">{{ icons.menu }}</v-icon>
           <img width="90rem" class="ml-3 mt-1" src="../assets/img/logo.svg" />
         </div>
       </div>
@@ -31,35 +31,37 @@
       </ul>
     </div>
 
-    <div class="navigation-mobile" :class="[ showMobileNav ? 'show' : 'hide' ]">
-      <div class="navigation-icon d-flex justify-end" @click="showMobileNav = !showMobileNav">
-        <v-icon class="mr-3 close-btn">{{ icons.close }}</v-icon>
-      </div>
+    <transition name="sidebar">
+      <div class="navigation-mobile" :class="[ showMobileNav ? 'show' : 'hide' ]">
+        <div class="navigation-icon d-flex justify-end" @click="showMobileNav = !showMobileNav">
+          <v-icon class="mr-3 close-btn">{{ icons.close }}</v-icon>
+        </div>
 
-      <ul>
-        <li @click="showMobileNav = !showMobileNav">
-          <router-link class="text-decoration-none" to="">Features</router-link>
-        </li>
-        <li @click="showMobileNav = !showMobileNav">
-          <router-link class="text-decoration-none" to="">Pricing</router-link>
-        </li>
-        <li @click="showMobileNav = !showMobileNav">
-          <router-link class="text-decoration-none" to="">Resources</router-link>
-        </li>
-        <v-divider class="ma-7" style="color: white"/>
-        <li @click="showMobileNav = !showMobileNav">
-          <router-link class="text-decoration-none btn" to="">Login</router-link>
-        </li>
-        <li class="signup-btn" @click="showMobileNav = !showMobileNav">
-          <router-link class="text-decoration-none btn signup-btn" to="">Sign Up</router-link>
-        </li>
-      </ul>
-      <div class="social-media text-center">
-        <a class="text-decoration-none" href="#"><v-icon>{{ icons.twitter}}</v-icon></a>
-        <a class="text-decoration-none mx-3" href="#"><v-icon>{{ icons.facebook }}</v-icon></a>
-        <a class="text-decoration-none" href="#"><v-icon>{{  icons.instagram }}</v-icon></a>
+        <ul>
+          <li @click="showMobileNav = !showMobileNav">
+            <router-link class="text-decoration-none" to="">Features</router-link>
+          </li>
+          <li @click="showMobileNav = !showMobileNav">
+            <router-link class="text-decoration-none" to="">Pricing</router-link>
+          </li>
+          <li @click="showMobileNav = !showMobileNav">
+            <router-link class="text-decoration-none" to="">Resources</router-link>
+          </li>
+          <v-divider class="ma-7" style="color: white"/>
+          <li @click="showMobileNav = !showMobileNav">
+            <router-link class="text-decoration-none btn" to="">Login</router-link>
+          </li>
+          <li class="signup-btn" @click="showMobileNav = !showMobileNav">
+            <router-link class="text-decoration-none btn signup-btn" to="">Sign Up</router-link>
+          </li>
+        </ul>
+        <div class="social-media text-center">
+          <a class="text-decoration-none" href="#"><v-icon>{{ icons.twitter}}</v-icon></a>
+          <a class="text-decoration-none mx-3" href="#"><v-icon>{{ icons.facebook }}</v-icon></a>
+          <a class="text-decoration-none" href="#"><v-icon>{{  icons.instagram }}</v-icon></a>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
