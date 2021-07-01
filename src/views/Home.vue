@@ -39,7 +39,7 @@
             type="submit"
             color="#2acfcf"
             :loading="loading"
-            class="text-capitalize white--text ml-sm-5 mt-3 mt-sm-0"
+            class="text-capitalize btn white--text ml-sm-5 mt-3 mt-sm-0"
           >Shorten it</v-btn
           >
         </v-form>
@@ -285,6 +285,9 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="scss">
+.btn {
+  width: 100%;
+}
 .jumbotron {
   margin: 0 1rem;
 
