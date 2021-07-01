@@ -71,10 +71,6 @@ import icons from '@/utils/icons'
 
 export default Vue.extend({
   name: 'nav-bar' as string,
-  components: {
-    // Navigation,
-    // NavigationMobile,
-  },
   data: () => ({
     icons,
     showMobileNav: false,
@@ -95,7 +91,6 @@ export default Vue.extend({
   height: 55px;
   padding: 10px 6%;
   box-shadow: 0px 2px 2px rgba(0,0,0,0.23);
-  // overflow: hidden !important;
   .nav-menu {
     list-style: none;
 
@@ -146,7 +141,6 @@ export default Vue.extend({
   height: 100vh;
   z-index: 9999;
   text-align: center;
-  // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
   .navigation-icon {
     .close-btn {

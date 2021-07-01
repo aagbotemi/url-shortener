@@ -220,7 +220,7 @@
       </v-container>
       <div class="copyright text-center py-1">
         <v-container>
-          {{ new Date().getFullYear() }} Copyright reserved
+          {{ copyrightYear }} Copyright reserved
         </v-container>
       </div>
     </footer>
@@ -247,6 +247,11 @@ export default Vue.extend({
   }),
   mounted () {
     this.getUrl()
+  },
+  computed: {
+    copyrightYear () {
+      return new Date().getFullYear()
+    }
   },
   methods: {
     clickedUrl () {
